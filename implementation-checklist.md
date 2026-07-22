@@ -47,11 +47,11 @@
 
 - [x] Build and test the environment-values writer with input validation, deterministic YAML, duplicate rejection, and symlink protection.
 - [x] Persist the optional Port run ID as a safe workload annotation.
-- [ ] Create and test the GitHub Actions workflow for manual and repository-dispatch provisioning requests.
-- [ ] Configure workflow checkout, per-environment concurrency, commit, push, outputs, and job summary.
-- [ ] Dispatch a unique test environment and verify Argo CD deploys it.
-- [ ] Dispatch the same inputs again and verify duplicate rejection.
-- [ ] Record the workflow URL, commit SHA, and duplicate-rejection evidence in `agentlog/github-workflow.md`.
+- [x] Create and test the GitHub Actions workflow for manual and repository-dispatch provisioning requests.
+- [x] Configure workflow checkout, per-environment concurrency, commit, push, outputs, and job summary.
+- [x] Dispatch a unique test environment and verify Argo CD deploys it.
+- [x] Dispatch the same inputs again and verify duplicate rejection.
+- [x] Record the workflow URL, commit SHA, and duplicate-rejection evidence in `agentlog/github-workflow.md`.
 
 ### Phase 5: Port Action, Integrations, And Catalog Relationships
 
