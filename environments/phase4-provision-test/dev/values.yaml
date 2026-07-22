@@ -1,0 +1,7 @@
+owner: platform-team
+service: phase4-provision-test
+expiration: "2026-07-29T00:00:00Z"
+profile: small
+portRunId: "phase4-validation-run"
+namespace:
+  create: true
