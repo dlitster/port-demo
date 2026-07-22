@@ -1,0 +1,9 @@
+namespace:
+  create: true
+owner: platform-team
+service: checkout-api
+expiration: 2026-07-24T00:00:00Z
+profile: small
+httpService:
+  enabled: true
+  port: 8080

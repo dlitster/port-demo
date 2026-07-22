@@ -1,0 +1,54 @@
+owner: platform-team
+service: example-service
+httpService:
+  enabled: false
+  type: ClusterIP
+  port: 80
+expiration: "2099-01-01T00:00:00Z"
+profile: small
+image: nginx:1.27-alpine
+
+sizeProfiles:
+  small:
+    workload:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+    namespaceQuota:
+      hard:
+        cpu: 500m
+        memory: 512Mi
+  medium:
+    workload:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
+    namespaceQuota:
+      hard:
+        cpu: "1"
+        memory: 1Gi
+  large:
+    workload:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+    namespaceQuota:
+      hard:
+        cpu: "2"
+        memory: 2Gi
+
+namespace:
+  create: false
+
+roleBinding:
+  subjectName: developer
+  subjectKind: User

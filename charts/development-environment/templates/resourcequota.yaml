@@ -1,0 +1,13 @@
+{{- $profile := include "development-environment.policyProfile" . | fromYaml }}
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: {{ include "development-environment.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "development-environment.policyLabels" . | nindent 4 }}
+  annotations:
+    {{- include "development-environment.policyAnnotations" . | nindent 4 }}
+spec:
+  hard:
+    {{- toYaml $profile.namespaceQuota.hard | nindent 4 }}

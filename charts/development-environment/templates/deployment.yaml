@@ -1,0 +1,31 @@
+{{- $profile := include "development-environment.policyProfile" . | fromYaml }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "development-environment.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "development-environment.workloadLabels" . | nindent 4 }}
+  annotations:
+    {{- include "development-environment.policyAnnotations" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "development-environment.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "development-environment.workloadLabels" . | nindent 8 }}
+      annotations:
+        {{- include "development-environment.policyAnnotations" . | nindent 8 }}
+    spec:
+      containers:
+        - name: application
+          image: {{ .Values.image | quote }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.httpService.port }}
+              protocol: TCP
+          resources:
+            {{- toYaml $profile.workload | nindent 12 }}

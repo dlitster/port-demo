@@ -1,0 +1,17 @@
+{{- $profile := include "development-environment.policyProfile" . | fromYaml }}
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: {{ include "development-environment.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "development-environment.policyLabels" . | nindent 4 }}
+  annotations:
+    {{- include "development-environment.policyAnnotations" . | nindent 4 }}
+spec:
+  limits:
+    - type: Container
+      default:
+        {{- toYaml $profile.workload.limits | nindent 8 }}
+      defaultRequest:
+        {{- toYaml $profile.workload.requests | nindent 8 }}

@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: development-environments
+  namespace: argocd
+spec:
+  sourceRepos:
+    - https://github.com/dlitster/port-demo.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: 'dev-*'
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: rbac.authorization.k8s.io
+      kind: RoleBinding
+    - group: apps
+      kind: Deployment
+    - group: ''
+      kind: Service

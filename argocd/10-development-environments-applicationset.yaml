@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: development-environments
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - git:
+        repoURL: https://github.com/dlitster/port-demo.git
+        revision: HEAD
+        directories:
+          - path: environments/*/*
+  template:
+    metadata:
+      name: dev-{{index .path.segments 1}}
+    spec:
+      project: development-environments
+      source:
+        repoURL: https://github.com/dlitster/port-demo.git
+        targetRevision: HEAD
+        path: charts/development-environment
+        helm:
+          valueFiles:
+            - ../../{{.path.path}}/values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: dev-{{index .path.segments 1}}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

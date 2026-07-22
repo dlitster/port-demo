@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "skills": {
+    "paths": [".opencode/skills"]
+  },
+  "mcp": {
+    "port-eu": {
+      "type": "remote",
+      "url": "https://mcp.port.io/v1",
+      "headers": {
+        "x-read-only-mode": "0"
+      },
+      "enabled": true
+    }
+  }
+}

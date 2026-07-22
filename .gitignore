@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+.opencode/node_modules/
+.opencode/opencode.json~
+.kube/
