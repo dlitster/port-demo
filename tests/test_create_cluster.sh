@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Purpose: Verify cluster creation fails safely when required local configuration is absent.
+# Phases: Created in Phase 1; validates scripts/create-cluster.sh.
 set -euo pipefail
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)

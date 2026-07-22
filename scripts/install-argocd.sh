@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Purpose: Install pinned Argo CD into the dedicated kind cluster.
+# Phases: Created in Phase 3; supports Phases 3.1 and 4.
 set -euo pipefail
 
 context="kind-portio1"

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Purpose: Remove the dedicated kind cluster used by this demo.
+# Phases: Created in Phase 1; supports cleanup for all cluster-based phases.
 set -euo pipefail
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)

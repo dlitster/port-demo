@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Purpose: Verify the Port Kubernetes exporter installer rejects missing credentials.
+# Phases: Created in Phase 1; validates scripts/install-port-exporter.sh.
 set -euo pipefail
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)

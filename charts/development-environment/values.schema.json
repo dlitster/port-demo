@@ -48,6 +48,10 @@
       "type": "string",
       "minLength": 1
     },
+    "portRunId": {
+      "type": "string",
+      "minLength": 1
+    },
     "sizeProfiles": {
       "type": "object"
     },

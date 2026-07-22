@@ -10,6 +10,10 @@ platform.example.com/profile: {{ .Values.profile | quote }}
 
 {{- define "development-environment.policyAnnotations" -}}
 platform.example.com/expires-at: {{ .Values.expiration | quote }}
+{{- $portRunId := .Values.portRunId | default "" | trim }}
+{{- with $portRunId }}
+platform.example.com/port-run-id: {{ . | quote }}
+{{- end }}
 {{- end }}
 
 {{- define "development-environment.selectorLabels" -}}

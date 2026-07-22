@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Purpose: Install the Port Kubernetes exporter with local credentials.
+# Phases: Created in Phase 1; supports catalog ingestion for Phases 5 and 6.
 set -euo pipefail
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)

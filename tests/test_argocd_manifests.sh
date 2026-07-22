@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Purpose: Verify the constrained Argo CD project and ApplicationSet manifests.
+# Phases: Created in Phase 3; validates GitOps discovery for Phase 4.
 set -euo pipefail
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)

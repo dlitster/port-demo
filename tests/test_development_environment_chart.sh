@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Purpose: Verify the development-environment Helm chart contract and rendered resources.
+# Phases: Created in Phase 2; extended in Phase 4 for Port run ID annotations.
 set -euo pipefail
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
@@ -39,6 +41,29 @@ if helm lint --strict "$chart" "${valid_values[@]}" --set service.name=payments-
 fi
 
 rendered=$(helm template dev "$chart" --namespace dev-demo "${valid_values[@]}")
+
+helm lint --strict "$chart" "${valid_values[@]}" --set-string portRunId=run-123
+
+rendered_with_port_run_id=$(helm template dev "$chart" --namespace dev-demo "${valid_values[@]}" \
+  --set-string portRunId=run-123)
+
+if [[ $(grep -Fxc '    platform.example.com/port-run-id: "run-123"' <<<"$rendered_with_port_run_id") -ne 5 ]]; then
+  printf 'Expected Port run ID annotation on every rendered resource\n' >&2
+  exit 1
+fi
+
+if grep -Fq 'platform.example.com/port-run-id:' <<<"$rendered"; then
+  printf 'Expected no blank Port run ID annotation when portRunId is absent\n' >&2
+  exit 1
+fi
+
+rendered_with_whitespace_port_run_id=$(helm template dev "$chart" --namespace dev-demo "${valid_values[@]}" \
+  --set-string 'portRunId=   ')
+
+if grep -Fq 'platform.example.com/port-run-id:' <<<"$rendered_with_whitespace_port_run_id"; then
+  printf 'Expected no Port run ID annotation when portRunId is whitespace-only\n' >&2
+  exit 1
+fi
 
 catalog_service_rendered=$(helm template dev "$chart" --namespace dev-demo \
   --set-string service=checkout-api \
