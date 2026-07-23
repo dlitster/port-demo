@@ -36,11 +36,12 @@
 ### Phase 3.1: Port Argo CD Ocean Integration
 
 - [x] Document the design and implementation plan for the dedicated Argo CD read-only Ocean user and integration.
-- [ ] Confirm `argocd-portio1` is not already registered as a Port integration through the Port UI.
-- [ ] Add server-side-applied Argo CD account and RBAC manifests for `port-ocean-user`.
-- [ ] Generate the dedicated Argo CD API token locally and store it only in ignored `.env`.
-- [ ] Install pinned Port Ocean `0.20.2` with an existing Kubernetes Secret in `port-argocd-integration`.
-- [ ] Verify Ocean authentication, Argo CD sync logs, and refreshed Port Argo CD entities.
+- [x] Confirm `argocd-portio1` is not already registered as a Port integration.
+- [x] Add server-side-applied Argo CD account and RBAC manifests for `port-ocean-user`.
+- [x] Generate the dedicated Argo CD API token locally and store it only in ignored `.env`.
+- [x] Install pinned Port Ocean `0.20.2` with an existing Kubernetes Secret in `port-argocd-integration`.
+- [x] Verify Ocean authentication and successful HTTPS Argo CD API synchronization.
+- [ ] Verify refreshed Port Argo CD entities after the Ocean resync.
 - [ ] Record deployment evidence in `agentlog/argocd.md`.
 
 ### Phase 4: GitHub Provisioning Workflow
@@ -55,12 +56,12 @@
 
 ### Phase 5: Port Action, Integrations, And Catalog Relationships
 
-- [ ] Inspect existing Port blueprints, Kubernetes exporter mapping, and GitHub integration capabilities.
-- [ ] Extend catalog mappings only as needed for workload, service, environment, and Argo CD relations.
-- [ ] Test revised mappings against integration examples before applying them.
-- [ ] Create a service-scoped Provision Development Environment action that dispatches the GitHub workflow.
-- [ ] Trigger the action for a real service and verify the Port run, Git commit, Argo CD Application, namespace, and catalog relations.
-- [ ] Record applied identifiers and any unsupported UI or MCP steps in `agentlog/port-configuration.md`.
+- [x] Inspect existing Port blueprints, Kubernetes exporter mapping, and GitHub integration capabilities.
+- [x] Extend catalog mappings only as needed for workload, service, environment, and Argo CD relations.
+- [x] Test revised mappings against integration examples before applying them.
+- [x] Create a service-scoped Provision Development Environment action that dispatches the GitHub workflow.
+- [x] Trigger the action for a real service and verify the Port run, Git commit, Argo CD Application, namespace, and catalog relations.
+- [x] Record applied identifiers and any unsupported UI or MCP steps in `agentlog/port-configuration.md`.
 
 ### Phase 6: Demo Data, Scorecard, Dashboard, And Rehearsal
 

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-rbac-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  policy.port-ocean.csv: |
+    p, role:read-only-role, applications, get, */*, allow
+    p, role:read-only-role, clusters, get, *, allow
+    p, role:read-only-role, projects, get, *, allow
+    p, role:read-only-role, repositories, get, *, allow
+    g, port-ocean-user, role:read-only-role
