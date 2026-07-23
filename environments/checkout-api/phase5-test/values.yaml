@@ -1,0 +1,7 @@
+owner: platform-team
+service: checkout-api
+expiration: "2026-07-30T00:00:00.000Z"
+profile: small
+portRunId: "r_sXFS9isdbc6btVb7"
+namespace:
+  create: true
